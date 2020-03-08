@@ -1,0 +1,28 @@
+{
+	"name": "Python 3.7",
+	"context": "..",
+	"dockerFile": "Dockerfile",
+
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.ipythonPath": "/usr/local/ipython",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.pylintPath": "/usr/local/share/pip-global/bin/pylint"
+	},
+
+	"appPort": [],
+
+	// Install libraries
+	"postCreateCommand": "pip install --default-timeout=100 -r requirements.txt",
+
+	// Comment out next line to run as root
+	"remoteUser": "mldev",
+
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"extensions": [
+		"ms-python.python",
+		"garytyler.darcula-pycharm"
+	]
+}

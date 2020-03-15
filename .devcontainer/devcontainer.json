@@ -1,5 +1,5 @@
 {
-	"name": "Python 3.7",
+	"name": "python env",
 	"context": "..",
 	"dockerFile": "Dockerfile",
 
@@ -13,12 +13,6 @@
 	},
 
 	"appPort": [],
-
-	// Install libraries
-	"postCreateCommand": "pip install --default-timeout=100 -r requirements.txt",
-
-	// Comment out next line to run as root
-	"remoteUser": "mldev",
 
 	// Add the IDs of extensions you want installed when the container is created in the array below.
 	"extensions": [

@@ -1,6 +1,0 @@
-tensorflow-gpu
-pandas
-matplotlib
-sklearn
-ipython
-jupyter

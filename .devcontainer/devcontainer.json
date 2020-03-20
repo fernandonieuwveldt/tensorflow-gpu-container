@@ -1,12 +1,11 @@
 {
 	"name": "python env",
 	"context": "..",
-	"dockerFile": "Dockerfile",
+	"dockerFile": "../Dockerfile",
 	// start container with gpu enabled
 	"runArgs": ["--gpus", "all", "-it", "--rm"],
 
 	"settings": { 
-		
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"python.pythonPath": "/usr/local/bin/python",
 		"python.ipythonPath": "/usr/local/ipython",

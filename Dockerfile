@@ -61,10 +61,12 @@ RUN ${PIP} --no-cache-dir install --upgrade \
 # Some TF tools expect a "python" binary
 RUN ln -s $(which ${PYTHON}) /usr/local/bin/python
 
-RUN ${PIP} install --default-timeout=100 tensorflow-gpu==2.1.0 \
-                                         pandas==1.0.0 \
-                                         scikit-learn==0.22.2 \
-                                         matplotlib==3.2.0 \
-                                         boto3==1.12.21 \
-                                         ipython==7.13.0
+RUN mkdir -p /ml-project
 
+COPY ./requirements.txt /ml-project
+
+WORKDIR /ml-project
+
+RUN ${PIP} install --default-timeout=100  -r requirements.txt
+
+CMD ["/bin/bash"]

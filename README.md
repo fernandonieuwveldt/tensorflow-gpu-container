@@ -1,6 +1,6 @@
 # Machine Learning Development Container: Python
 
-This repo consist of a Dockerfile + vscode settings for a Machine Learning Development environment. This is a modification of the original tensorflow Dockerfile
+This repo consist of a Dockerfile + vscode settings for a Machine Learning Development environment with tensorflow-gpu. This is a modification of the original tensorflow Dockerfile
 
 On host machine install nvidia toolkit. Taken from the https://github.com/NVIDIA/nvidia-docker repo:
 (Assuming you on a Debian based system)

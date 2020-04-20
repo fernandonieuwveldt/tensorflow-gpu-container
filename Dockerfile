@@ -1,17 +1,14 @@
 # settings used from the official tensorflow dockerfile with add-ons
-ARG UBUNTU_VERSION=18.04
 
-ARG ARCH=
-ARG CUDA=10.1
+ARG ARCH
+ARG CUDA
+ARG UBUNTU_VERSION
 FROM nvidia/cuda${ARCH:+-$ARCH}:${CUDA}-base-ubuntu${UBUNTU_VERSION} as base
 
 ARG ARCH
 ARG CUDA
-ARG CUDNN=7.6.4.38-1
-ARG CUDNN_MAJOR_VERSION=7
-ARG LIB_DIR_PREFIX=x86_64
-ARG LIBNVINFER=6.0.1-1
-ARG LIBNVINFER_MAJOR_VERSION=6
+ARG CUDNN
+ARG LIB_CUBLAS10
 
 # Needed for string substitution
 SHELL ["/bin/bash", "-c"]
@@ -20,7 +17,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     build-essential \ 
     cuda-command-line-tools-${CUDA/./-} \
     # as installed in tensorflow dockerfile
-    libcublas10=10.2.1.243-1 \ 
+    libcublas10=${LIB_CUBLAS10} \ 
     cuda-nvrtc-${CUDA/./-} \
     cuda-cufft-${CUDA/./-} \
     cuda-curand-${CUDA/./-} \
@@ -48,9 +45,9 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
     && echo "/usr/local/cuda/lib64/stubs" > /etc/ld.so.conf.d/z-cuda-stubs.conf \
     && ldconfig      
 
-ARG _PY_SUFFIX=3
-ARG PYTHON=python3
-ARG PIP=pip3
+ARG PY_SUFFIX
+ARG PYTHON
+ARG PIP
 
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8

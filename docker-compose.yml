@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  ml-dev:
+    container_name: ml-dev
+    build:
+      context: .
+      args:
+        UBUNTU_VERSION: 18.04
+        ARCH:
+        CUDA: 10.1
+        CUDNN: 7.6.4.38-1
+        LIB_CUBLAS10: 10.2.1.243-1
+        PY_SUFFIX: 3
+        PYTHON: python3
+        PIP: pip3
+    volumes:
+        - ml-dev-bashhistory:/commandhistory
+        - ./:/ml-project
+
+volumes:
+    ml-dev-bashhistory:

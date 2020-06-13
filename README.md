@@ -1,6 +1,7 @@
-# Machine Learning Development Container: Python
+# Tensorflow with GPU Docker Container: Python
 
-This repo consist of a Dockerfile + vscode settings for a Machine Learning Development environment with tensorflow-gpu. This is a modification of the original tensorflow Dockerfile
+This repo consist of a Dockerfile for a Tensorflow(GPU) container. This is a modification of the original tensorflow Dockerfile, but striving to be easier to install.
+(There is also a branch to use docker-compose, but there is currently not a gpu flag for compose.)
 
 On host machine install nvidia toolkit. Taken from the https://github.com/NVIDIA/nvidia-docker repo:
 (Assuming you on a Debian based system)
@@ -19,15 +20,27 @@ distribution=ubuntu18.04
 
 To build:
 ```
-docker build . -t mldev:gpu
+docker build . -t tensorflow
 ```
 
 To spin up container with gpu:
 ```
-docker run --gpus all -it --rm mldev:gpu bash
+docker run --gpus all -it -p 8888:8888 --rm tensorflow bash
 ```
 
-To start a jupyter notebook:
+To start a jupyter notebook, run the following in the docker container:
 ```
 jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
+```
+
+Can also add an alias to your ~/.bashrc file:
+```
+alias start_tensorflow_container='docker run --gpus all -it \
+				                  -v "$(pwd)":/ml-project \
+				                  -p 8888:8888 \
+				                  tensorflow bash'
+```
+To spin up container using the alias:
+```
+start_tensorflow_container
 ```

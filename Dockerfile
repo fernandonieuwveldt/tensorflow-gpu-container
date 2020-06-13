@@ -76,10 +76,6 @@ COPY ./requirements.txt /ml-project
 
 WORKDIR /ml-project
 
-RUN ${PIP} install --default-timeout=100  -r requirements.txt
-
-# persist bash history between runs
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && echo $SNIPPET >> "/root/.bashrc"
-    
+RUN ${PIP} install --default-timeout=100 -r requirements.txt
+  
 CMD ["/bin/bash"]
